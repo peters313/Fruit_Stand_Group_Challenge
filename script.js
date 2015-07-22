@@ -1,3 +1,10 @@
+function formatNum (num) {
+	num /= 100;
+	num = parseFloat(Math.round(num * 100) / 100).toFixed(2);
+	num = num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	return num;
+}
+
 function randomNumber(min, max) {
 	return Math.floor(Math.random() * (1 + max - min) + min);
 
@@ -56,10 +63,10 @@ function fruitPriceUpdates() {
 			// console.log("decrease");
 		};
 	}
-	$('.apple > .price').text("$" + fruitPrices[0][1]);
-	$('.orange > .price').text("$" + fruitPrices[1][1]);
-	$('.banana > .price').text("$" + fruitPrices[2][1]);
-	$('.pear > .price').text("$" + fruitPrices[3][1]);
+	$('.apple > .price').text("$" + formatNum(fruitPrices[0][1]));
+	$('.orange > .price').text("$" + formatNum(fruitPrices[1][1]));
+	$('.banana > .price').text("$" + formatNum(fruitPrices[2][1]));
+	$('.pear > .price').text("$" + formatNum(fruitPrices[3][1]));
 // console.log("pears price: " + fruitPrices[1][1] + "pears indicator: " + fruitPrices[1][2]);
 }
 fruitPriceUpdates(fruitPrices);
@@ -77,7 +84,7 @@ $(document).ready(function(){
 	var avgApple = User.spentApples / User.totalNumApples;
 	$('.userapple > .inventory').text(User.numCurrentApples);
 	$('.userapple > .avgprice').text(avgApple);
-	$('.cash').text("$" + User.cash);
+	$('.cash').text("$" + formatNum(User.cash));
 	});
 	
 	$(".buy-orange").on('click', function(){
@@ -88,7 +95,7 @@ $(document).ready(function(){
 	var avgOrange = User.spentOranges / User.totalNumOranges;
 	$('.userorange > .inventory').text(User.numCurrentOranges);
 	$('.userorange > .avgprice').text(avgOrange);
-	$('.cash').text("$" + User.cash);
+	$('.cash').text("$" + formatNum(User.cash));
 	});
 	
 	$(".buy-banana").on('click', function(){
@@ -99,7 +106,7 @@ $(document).ready(function(){
 	var avgBanana = User.spentBananas / User.totalNumBananas;
 	$('.userbanana > .inventory').text(User.numCurrentBananas);
 	$('.userbanana > .avgprice').text(avgBanana);
-	$('.cash').text("$" + User.cash);
+	$('.cash').text("$" + formatNum(User.cash));
 	});
 	
 	$(".buy-pear").on('click', function(){
@@ -110,35 +117,35 @@ $(document).ready(function(){
 	var avgPear = User.spentPears / User.totalNumPears;
 	$('.userpear > .inventory').text(User.numCurrentPears);
 	$('.userpear > .avgprice').text(avgPear);
-	$('.cash').text("$" + User.cash);
+	$('.cash').text("$" + formatNum(User.cash));
 	});
 	
 	$(".sell-apple").on('click', function(){
 		User.numCurrentApples--;
 		User.cash += fruitPrices[0][1];
 	$('.userapple > .inventory').text(User.numCurrentApples);
-	$('.cash').text("$" + User.cash);
+	$('.cash').text("$" + formatNum(User.cash));
 	});
 	
 	$(".sell-orange").on('click', function(){
 		User.numCurrentOranges--;
 		User.cash += fruitPrices[1][1];
 	$('.userorange > .inventory').text(User.numCurrentOranges);
-	$('.cash').text("$" + User.cash);
+	$('.cash').text("$" + formatNum(User.cash));
 	});
 	
 	$(".sell-banana").on('click', function(){
 		User.numCurrentBananas--;
 		User.cash += fruitPrices[2][1];
 	$('.userbanana > .inventory').text(User.numCurrentBananas);
-	$('.cash').text("$" + User.cash);
+	$('.cash').text("$" + formatNum(User.cash));
 	});
 	
 	$(".sell-pear").on('click', function(){
 		User.numCurrentPears--;
 		User.cash += fruitPrices[3][1];
 	$('.userpear > .inventory').text(User.numCurrentPears);
-	$('.cash').text("$" + User.cash);
+	$('.cash').text("$" + formatNum(User.cash));
 	});
 
 }); 
