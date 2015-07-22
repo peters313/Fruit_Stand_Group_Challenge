@@ -19,7 +19,7 @@ var User = {
 	spentBananas : 0,
 	//spentGrapes : 0,
 	spentPears : 0,
-	cash : 10000
+	cash : 100
 }
 
 //this is user inventory
